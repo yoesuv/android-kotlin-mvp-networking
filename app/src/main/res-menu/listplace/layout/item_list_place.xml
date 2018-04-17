@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="4dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImageViewListPlace"
+        android:layout_width="@dimen/image_list_place_height"
+        android:layout_height="@dimen/image_list_place_height"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_image_placeholder"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/circleImageViewListPlace"
+        android:layout_toEndOf="@id/circleImageViewListPlace">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/textViewListPlaceName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/menu_list_place"
+            android:textColor="@color/grey_800"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/textViewListPlacePlace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewListPlaceName"
+            android:text="@string/list_place"
+            android:textColor="@color/grey_800"
+            android:textSize="14sp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

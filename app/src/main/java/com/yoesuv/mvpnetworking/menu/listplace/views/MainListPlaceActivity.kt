@@ -2,15 +2,18 @@ package com.yoesuv.mvpnetworking.menu.listplace.views
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.MenuItem
 import com.yoesuv.mvpnetworking.R
 import com.yoesuv.mvpnetworking.datas.Constants
+import com.yoesuv.mvpnetworking.menu.listplace.adapters.ListPlaceAdapter
 import com.yoesuv.mvpnetworking.menu.listplace.contracts.ListPlaceContract
 import com.yoesuv.mvpnetworking.menu.listplace.models.ListPlaceModel
 import com.yoesuv.mvpnetworking.menu.listplace.presenters.ListPlacePresenter
 import kotlinx.android.synthetic.main.activity_list_place.*
 import kotlinx.android.synthetic.main.activity_list_place.view.*
+import java.util.*
 
 /**
  *  Created by yusuf on 4/17/18.
@@ -18,6 +21,9 @@ import kotlinx.android.synthetic.main.activity_list_place.view.*
 class MainListPlaceActivity: AppCompatActivity(), ListPlaceContract.ViewListPlace {
 
     private lateinit var listPlacePresenter: ListPlacePresenter
+
+    private var listPlace: MutableList<ListPlaceModel.Place> = arrayListOf()
+    private lateinit var listPlaceAdapter:ListPlaceAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +34,7 @@ class MainListPlaceActivity: AppCompatActivity(), ListPlaceContract.ViewListPlac
 
         setupToolbar()
         setupSwipeRefresh()
+        setupAdapter()
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -56,8 +63,21 @@ class MainListPlaceActivity: AppCompatActivity(), ListPlaceContract.ViewListPlac
         }
     }
 
+    private fun setupAdapter(){
+        val layoutManager = LinearLayoutManager(this)
+        recyclerViewListPlace.layoutManager = layoutManager
+        listPlaceAdapter = ListPlaceAdapter(this, listPlace)
+        recyclerViewListPlace.adapter = listPlaceAdapter
+    }
+
     override fun setData(listPlaceModel: ListPlaceModel) {
         Log.d(Constants.RESULT_DEBUG,"MainListPlaceActivity # jumlah tempat ${listPlaceModel.data.size}")
+        if(listPlaceModel.data.isNotEmpty()){
+            listPlaceAdapter.addData(listPlaceModel.data as MutableList<ListPlaceModel.Place>)
+            recyclerViewListPlace.post {
+                listPlaceAdapter.notifyDataSetChanged()
+            }
+        }
     }
 
     override fun showLoading() {
