@@ -12,4 +12,12 @@
         <item name="colorButtonNormal">@color/teal_500</item>
     </style>
 
+    <style name="scrollStyle">
+        <item name="android:scrollbarStyle">outsideOverlay</item>
+        <item name="android:scrollbarThumbVertical">@color/teal_500</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:fadeScrollbars">true</item>
+        <item name="android:scrollbarSize">5dp</item>
+    </style>
+
 </resources>

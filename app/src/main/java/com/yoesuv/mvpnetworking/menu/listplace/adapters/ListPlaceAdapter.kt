@@ -48,8 +48,8 @@ class ListPlaceAdapter(activity: Activity, private val listPlace: MutableList<Li
                     .load(place.thumbnail)
                     .apply(RequestOptions()
                             .format(DecodeFormat.PREFER_ARGB_8888)
-                            .placeholder(R.drawable.ic_image_placeholder)
-                            .error(R.drawable.ic_image_placeholder)
+                            .placeholder(R.drawable.image_placeholder)
+                            .error(R.drawable.image_placeholder)
                             .dontAnimate())
                     .into(itemView.circleImageViewListPlace)
         }

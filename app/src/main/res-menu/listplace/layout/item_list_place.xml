@@ -9,7 +9,7 @@
         android:layout_width="@dimen/image_list_place_height"
         android:layout_height="@dimen/image_list_place_height"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_image_placeholder"/>
+        android:src="@drawable/image_placeholder"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
