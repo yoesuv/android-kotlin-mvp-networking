@@ -1,11 +1,10 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 26
+    flavorDimensions "default"
     defaultConfig {
         applicationId "com.yoesuv.mvpnetworking"
         minSdkVersion 16
@@ -30,6 +29,11 @@ android {
             ]
         }
     }
+    productFlavors {
+        development {
+            buildConfigField "String", "BASE_URL", "\"https://gist.githubusercontent.com/yoesuv/\""
+        }
+    }
 }
 
 dependencies {
@@ -42,4 +46,15 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     implementation "com.android.support:recyclerview-v7:$project.supportLibraryVersion"
+    implementation "com.fasterxml.jackson.core:jackson-core:$project.jacksonVersion"
+    implementation "com.fasterxml.jackson.core:jackson-annotations:$project.jacksonVersion"
+
+    implementation "com.squareup.retrofit2:retrofit:$project.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-jackson:$project.retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$project.retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$project.httpLoggingVersion"
+
+    implementation "io.reactivex.rxjava2:rxjava:$project.rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$project.rxAndroidVersion"
+    implementation "io.reactivex.rxjava2:rxkotlin:$project.rxKotlinVersion"
 }
