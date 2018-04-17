@@ -5,8 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/toolbar_main"
-        layout="@layout/toolbar_top"/>
+    <!-- BEGIN TOOLBAR -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarGallery"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <com.yoesuv.mvpnetworking.widgets.ToolbarTextView
+            android:id="@+id/textViewTitleToolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"/>
+
+    </android.support.v7.widget.Toolbar>
+    <!-- END TOOLBAR -->
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshGallery"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewGallery"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

@@ -6,4 +6,5 @@ package com.yoesuv.mvpnetworking.datas
 object Constants {
     const val RESULT_DEBUG = "result_debug"
     const val RESULT_ERROR = "result_error"
+    const val TOOLBAR_ELEVATION = 5f
 }
