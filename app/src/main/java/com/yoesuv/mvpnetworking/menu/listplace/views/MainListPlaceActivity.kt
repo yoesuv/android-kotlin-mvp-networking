@@ -2,6 +2,7 @@ package com.yoesuv.mvpnetworking.menu.listplace.views
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.MenuItem
 import com.yoesuv.mvpnetworking.R
 import com.yoesuv.mvpnetworking.datas.Constants
@@ -22,10 +23,11 @@ class MainListPlaceActivity: AppCompatActivity(), ListPlaceContract.ViewListPlac
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_place)
 
-        listPlacePresenter = ListPlacePresenter()
+        listPlacePresenter = ListPlacePresenter(this)
         listPlacePresenter.getListPlace()
 
         setupToolbar()
+        setupSwipeRefresh()
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -33,6 +35,11 @@ class MainListPlaceActivity: AppCompatActivity(), ListPlaceContract.ViewListPlac
             onBackPressed()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        listPlacePresenter.destroy()
     }
 
     private fun setupToolbar(){
@@ -43,7 +50,21 @@ class MainListPlaceActivity: AppCompatActivity(), ListPlaceContract.ViewListPlac
         supportActionBar?.elevation = Constants.TOOLBAR_ELEVATION
     }
 
-    override fun setData(listPlaceModel: ListPlaceModel) {
+    private fun setupSwipeRefresh(){
+        swipeRefreshListPlace.setOnRefreshListener {
+            listPlacePresenter.getListPlace()
+        }
+    }
 
+    override fun setData(listPlaceModel: ListPlaceModel) {
+        Log.d(Constants.RESULT_DEBUG,"MainListPlaceActivity # jumlah tempat ${listPlaceModel.data.size}")
+    }
+
+    override fun showLoading() {
+        swipeRefreshListPlace.isRefreshing = true
+    }
+
+    override fun dismissLoading() {
+        swipeRefreshListPlace.isRefreshing = false
     }
 }

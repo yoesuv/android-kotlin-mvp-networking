@@ -8,6 +8,8 @@ import com.yoesuv.mvpnetworking.menu.listplace.models.ListPlaceModel
 class ListPlaceContract {
 
     interface ViewListPlace{
+        fun showLoading()
+        fun dismissLoading()
         fun setData(listPlaceModel: ListPlaceModel)
     }
 
