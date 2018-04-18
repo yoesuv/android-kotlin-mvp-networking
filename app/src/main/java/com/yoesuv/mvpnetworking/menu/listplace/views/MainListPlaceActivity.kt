@@ -13,7 +13,6 @@ import com.yoesuv.mvpnetworking.menu.listplace.models.ListPlaceModel
 import com.yoesuv.mvpnetworking.menu.listplace.presenters.ListPlacePresenter
 import kotlinx.android.synthetic.main.activity_list_place.*
 import kotlinx.android.synthetic.main.activity_list_place.view.*
-import java.util.*
 
 /**
  *  Created by yusuf on 4/17/18.
