@@ -4,7 +4,7 @@ import com.yoesuv.mvpnetworking.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.jackson.JacksonConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 /**
  *  Created by yusuf on 4/12/18.
@@ -22,7 +22,7 @@ object ServiceFactory {
 
         val retrofit = Retrofit.Builder()
                 .baseUrl(BuildConfig.BASE_URL)
-                .addConverterFactory(JacksonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .addCallAdapterFactory(RxErrorHandlingCallAdapterFactory.create())
                 .build()

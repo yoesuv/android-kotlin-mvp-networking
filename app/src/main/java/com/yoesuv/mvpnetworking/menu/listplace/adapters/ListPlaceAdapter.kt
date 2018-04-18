@@ -27,7 +27,6 @@ class ListPlaceAdapter(activity: Activity, private val listPlace: MutableList<Li
     }
 
     override fun getItemCount(): Int {
-        Log.d(Constants.RESULT_DEBUG,"ListPlaceAdapter # data size ${listPlace.size}")
         return listPlace.size
     }
 

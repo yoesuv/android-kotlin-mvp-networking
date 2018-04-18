@@ -3,6 +3,9 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    signingConfigs {
+
+    }
     compileSdkVersion 26
     flavorDimensions "default"
     defaultConfig {
@@ -14,8 +17,14 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            minifyEnabled true
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
         release {
-            minifyEnabled false
+            minifyEnabled true
+            useProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -37,27 +46,21 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation "com.android.support:appcompat-v7:$project.supportLibraryVersion"
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-
     implementation "com.android.support:recyclerview-v7:$project.supportLibraryVersion"
-    implementation "com.fasterxml.jackson.core:jackson-core:$project.jacksonVersion"
-    implementation "com.fasterxml.jackson.core:jackson-annotations:$project.jacksonVersion"
-
     implementation "com.squareup.retrofit2:retrofit:$project.retrofitVersion"
-    implementation "com.squareup.retrofit2:converter-jackson:$project.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$project.retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$project.retrofitVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$project.httpLoggingVersion"
-
     implementation "io.reactivex.rxjava2:rxjava:$project.rxJavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$project.rxAndroidVersion"
     implementation "io.reactivex.rxjava2:rxkotlin:$project.rxKotlinVersion"
-
     implementation "de.hdodenhof:circleimageview:$project.circleImageViewVersion"
     implementation "com.github.bumptech.glide:glide:$project.glideVersion"
     annotationProcessor "com.github.bumptech.glide:compiler:$project.glideVersion"
