@@ -12,7 +12,7 @@ data class ListPlaceModel (
         @SerializedName("data") @Expose val data:List<Place>){
 
         class Place(
-                @SerializedName("name") @Expose val nama:String?,
+                @SerializedName("nama") @Expose val nama:String?,
                 @SerializedName("lokasi") @Expose val lokasi:String?,
                 @SerializedName("deskripsi") @Expose val deskripsi:String?,
                 @SerializedName("thumbnail") @Expose val thumbnail:String?,
