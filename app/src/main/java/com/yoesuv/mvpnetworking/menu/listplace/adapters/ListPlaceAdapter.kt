@@ -1,6 +1,7 @@
 package com.yoesuv.mvpnetworking.menu.listplace.adapters
 
 import android.app.Activity
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,12 +13,13 @@ import com.bumptech.glide.request.RequestOptions
 import com.yoesuv.mvpnetworking.R
 import com.yoesuv.mvpnetworking.datas.Constants
 import com.yoesuv.mvpnetworking.menu.listplace.models.ListPlaceModel
+import com.yoesuv.mvpnetworking.menu.listplace.views.DetailListPlaceActivity
 import kotlinx.android.synthetic.main.item_list_place.view.*
 
 /**
  *  Created by yusuf on 4/17/18.
  */
-class ListPlaceAdapter(activity: Activity, private val listPlace: MutableList<ListPlaceModel.Place>): RecyclerView.Adapter<ListPlaceAdapter.ListPlaceViewHolder>() {
+class ListPlaceAdapter(private val activity: Activity, private val listPlace: MutableList<ListPlaceModel.Place>): RecyclerView.Adapter<ListPlaceAdapter.ListPlaceViewHolder>() {
 
     private var inflater: LayoutInflater = LayoutInflater.from(activity.applicationContext)
 
@@ -31,7 +33,7 @@ class ListPlaceAdapter(activity: Activity, private val listPlace: MutableList<Li
     }
 
     override fun onBindViewHolder(holder: ListPlaceViewHolder?, position: Int) {
-        holder?.setData(listPlace[holder.adapterPosition])
+        holder?.setData(activity, listPlace[holder.adapterPosition])
     }
 
     fun addData(listPlace: MutableList<ListPlaceModel.Place>){
@@ -40,7 +42,7 @@ class ListPlaceAdapter(activity: Activity, private val listPlace: MutableList<Li
 
     class ListPlaceViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
 
-        fun setData(place: ListPlaceModel.Place){
+        fun setData(activity: Activity, place: ListPlaceModel.Place){
             itemView.textViewListPlaceName.text = place.nama
             itemView.textViewListPlacePlace.text = place.lokasi
             Glide.with(itemView.context)
@@ -51,6 +53,12 @@ class ListPlaceAdapter(activity: Activity, private val listPlace: MutableList<Li
                             .error(R.drawable.image_placeholder)
                             .dontAnimate())
                     .into(itemView.circleImageViewListPlace)
+
+            itemView.setOnClickListener {
+                val intent = Intent(activity, DetailListPlaceActivity::class.java)
+                intent.putExtra(DetailListPlaceActivity.EXTRA_DATA_LIST_PLACE, place)
+                activity.startActivity(intent)
+            }
         }
 
     }
