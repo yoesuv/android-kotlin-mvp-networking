@@ -23,7 +23,7 @@ class ListPlaceAdapter(private val activity: Activity, private val listPlace: Mu
 
     private var inflater: LayoutInflater = LayoutInflater.from(activity.applicationContext)
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ListPlaceViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListPlaceViewHolder {
         val view:View = inflater.inflate(R.layout.item_list_place, parent, false)
         return ListPlaceViewHolder(view)
     }
@@ -32,15 +32,15 @@ class ListPlaceAdapter(private val activity: Activity, private val listPlace: Mu
         return listPlace.size
     }
 
-    override fun onBindViewHolder(holder: ListPlaceViewHolder?, position: Int) {
-        holder?.setData(activity, listPlace[holder.adapterPosition])
+    override fun onBindViewHolder(holder: ListPlaceViewHolder, position: Int) {
+        holder.setData(activity, listPlace[holder.adapterPosition])
     }
 
     fun addData(listPlace: MutableList<ListPlaceModel.Place>){
         this.listPlace.addAll(listPlace)
     }
 
-    class ListPlaceViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+    class ListPlaceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun setData(activity: Activity, place: ListPlaceModel.Place){
             itemView.textViewListPlaceName.text = place.nama

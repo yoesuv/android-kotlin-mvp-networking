@@ -1,6 +1,7 @@
 package com.yoesuv.mvpnetworking.menu.gallery.adapters
 
 import android.app.Activity
+import android.support.annotation.NonNull
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +20,7 @@ class GalleryAdapter(activity: Activity, private var listGallery:MutableList<Gal
 
     private val inflater:LayoutInflater = LayoutInflater.from(activity.applicationContext)
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): GalleryViewHolder {
+    override fun onCreateViewHolder(@NonNull parent: ViewGroup, viewType: Int): GalleryViewHolder {
         val view:View = inflater.inflate(R.layout.item_gallery, parent, false)
         return GalleryViewHolder(view)
     }
@@ -28,11 +29,11 @@ class GalleryAdapter(activity: Activity, private var listGallery:MutableList<Gal
         return listGallery.size
     }
 
-    override fun onBindViewHolder(holder: GalleryViewHolder?, position: Int) {
-        holder?.setData(listGallery[holder.adapterPosition])
+    override fun onBindViewHolder(holder: GalleryViewHolder, position: Int) {
+        holder.setData(listGallery[holder.adapterPosition])
     }
 
-    class GalleryViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+    class GalleryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun setData(gallery: GalleryModel.Gallery){
             Glide.with(itemView.context)
